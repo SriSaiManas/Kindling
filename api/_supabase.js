@@ -56,6 +56,39 @@ async function getArticles(supabase) {
   return sortArticles(data || []);
 }
 
+async function getDesk(supabase) {
+  const { data, error } = await supabase
+    .from('kindling_desk')
+    .select('id, name, description, image, created_at')
+    .order('created_at', { ascending: true });
+
+  if (error) throw error;
+  return data || [];
+}
+
+async function getPortfolios(supabase, desk_id) {
+  let query = supabase
+    .from('kindling_portfolios')
+    .select('id, desk_id, title, description, content, image, link, created_at');
+
+  if (desk_id) {
+    query = query.eq('desk_id', desk_id);
+  }
+
+  const { data, error } = await query.order('created_at', { ascending: true });
+  if (error) throw error;
+  return (data || []).map(row => {
+    let images = [];
+    if (row.link) {
+      try {
+        const parsed = JSON.parse(row.link);
+        if (Array.isArray(parsed.images)) images = parsed.images;
+      } catch (_) {}
+    }
+    return { ...row, images };
+  });
+}
+
 async function seedIfEmpty(supabase) {
   const { count, error } = await supabase
     .from('kindling_articles')
@@ -95,5 +128,7 @@ module.exports = {
   sendJson,
   readJson,
   getArticles,
+  getDesk,
+  getPortfolios,
   seedIfEmpty
 };

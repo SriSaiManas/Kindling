@@ -7,6 +7,10 @@ const url = require('url');
 const articlesHandler = require('./api/articles');
 const articleByIdHandler = require('./api/articles/[id]');
 const seedHandler = require('./api/articles/seed');
+const deskHandler = require('./api/desk');
+const deskByIdHandler = require('./api/desk/[id]');
+const portfoliosHandler = require('./api/portfolios');
+const portfoliosByIdHandler = require('./api/portfolios/[id]');
 
 const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 
@@ -77,10 +81,28 @@ async function handleRequest(req, res) {
     if (pathname === '/api/articles/seed' || pathname === '/api/articles/seed/') {
       return seedHandler(req, res);
     }
-    const match = pathname.match(/^\/api\/articles\/([^/]+)$/);
+    let match = pathname.match(/^\/api\/articles\/([^/]+)$/);
     if (match) {
       req.query.id = decodeURIComponent(match[1]);
       return articleByIdHandler(req, res);
+    }
+
+    if (pathname === '/api/desk' || pathname === '/api/desk/') {
+      return deskHandler(req, res);
+    }
+    match = pathname.match(/^\/api\/desk\/([^/]+)$/);
+    if (match) {
+      req.query.id = decodeURIComponent(match[1]);
+      return deskByIdHandler(req, res);
+    }
+
+    if (pathname === '/api/portfolios' || pathname === '/api/portfolios/') {
+      return portfoliosHandler(req, res);
+    }
+    match = pathname.match(/^\/api\/portfolios\/([^/]+)$/);
+    if (match) {
+      req.query.id = decodeURIComponent(match[1]);
+      return portfoliosByIdHandler(req, res);
     }
 
     return res.status(404).json({ error: 'Not found' });

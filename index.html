@@ -578,8 +578,9 @@
   <section class="portfolio-section wrap" id="portfolioView" style="display:none;">
     <div class="portfolio-top">
       <button class="btn ghost" id="portfolioBackBtn" type="button">← back to the desk</button>
-      <div class="portfolio-admin-actions">
+      <div class="portfolio-admin-actions" style="display:flex; gap:8px;">
         <button class="btn clay small" id="editPortfolioBtn" type="button" style="display:none;">edit portfolio</button>
+        <button class="btn ghost small" id="deletePortfolioBtn" type="button" style="display:none; color:var(--clay); border-color:var(--clay);">delete portfolio</button>
       </div>
     </div>
     <div class="portfolio-profile">
@@ -767,148 +768,6 @@
     'linear-gradient(155deg,#8a3720,#c99a2e)'
   ];
 
-  const STORAGE_KEY = 'kindling_bangalore_articles_v1';
-  const DESK_STORAGE_KEY = 'kindling_bangalore_desk_v1';
-
-  // Seed articles on Sustainable Communities of Bangalore
-  const seedArticles = [
-    {
-      id: "seed-bangalore-1",
-      title: "How Jakkur Lake Became a Model for Community Waters",
-      tag: "water commons",
-      tagline: "wetlands and wastewater",
-      punchline: "wetlands and wastewater",
-      excerpt: "Ten years ago, Jakkur Lake was choked with debris. Today, it stands as Bangalore's circular water triumph.",
-      body: "## The return of the pelicans\n\nTen years ago, Jakkur Lake was choked with construction debris and untamed runoff. Today, it stands as one of Bangalore's most celebrated circular-water success stories — not because of top-down municipal decree alone, but through relentless neighborhood stewardship and an integrated natural wetland design.\n\nTreated water from the secondary STP flows first into a 4-hectare constructed wetland of typha reeds, water hyacinth and alligator weed before spilling into the main lake basin. The vegetation absorbs surplus nitrates and phosphates, yielding clean water that recharges open wells across the northern peri-urban belt.\n\n# The community behind the bund\n\nEvery Saturday at dawn, volunteers from Jalaposhan Trust walk the 4.2 km perimeter bund. School groups tally bird counts — over 190 species documented, including spot-billed pelicans and painted storks — while local fishermen maintain a regulated catch quota that prevents toxic algal blooms.\n\n_Sustainability is not a technology you buy;_ it is a social habit built around shared commons. When neighborhoods take ownership of their catchment, Bangalore’s historic cascading tank system begins to breathe again.",
-      color: "linear-gradient(155deg,#b0492f,#1c1916)",
-      icon: "spark",
-      author: "Alvin",
-      authorRole: "admin",
-      date: "today",
-      createdAt: 1700000000000,
-      image: null,
-      images: [],
-      draft: false
-    },
-    {
-      id: "seed-bangalore-2",
-      title: "From Balcony to Soil: Bangalore's Permaculture Revolution",
-      tag: "urban farming",
-      tagline: "growing green in concrete",
-      punchline: "growing green in concrete",
-      excerpt: "Rooftop khambas and tiered composters are generating rich black humus above the city traffic.",
-      body: "## Turning concrete slabs into living soil\n\nAcross Indiranagar, Malleshwaram, and Whitefield, hundreds of households have stopped treating kitchen scraps as garbage. Instead, rooftop khambas and tiered terra-cotta composters are generating rich black humus that fuels compact micro-forests above the traffic din.\n\n# The Oota From Your Thota movement\n\nWhat began as informal seed swaps has evolved into a citywide culture of urban agriculture. 'Oota From Your Thota' (Food from your Garden) brings together veteran terrace gardeners with newcomers learning how to brew jeevamrutha and harvest heirloom brinjal varieties.\n\nIn a metropolis losing green cover to rapid transit and commercial glass towers, these skyward gardens do more than produce greens: they lower indoor temperatures by up to 3 degrees Celsius, catch monsoon overflows, and bring native solitary bees back into residential alleys.",
-      color: "linear-gradient(155deg,#8a3720,#3a2c22)",
-      icon: "ember",
-      author: "Yasha",
-      authorRole: "admin",
-      date: "yesterday",
-      createdAt: 1699900000000,
-      image: null,
-      images: [],
-      draft: false
-    },
-    {
-      id: "seed-bangalore-3",
-      title: "The Zero-Waste Pockets of Malleshwaram",
-      tag: "circular economy",
-      tagline: "segregation at source",
-      punchline: "segregation at source",
-      excerpt: "Inside select lanes of Malleshwaram, dry waste collection achieves a 90% segregation rate at the doorstep.",
-      body: "## Dignity and decentralization\n\nBangalore generates over 4,000 tonnes of municipal solid waste every single day. Yet inside select lanes of Malleshwaram and HSR Layout, dry waste collection centres run in partnership with Hasiru Dala achieve a 90% segregation rate right at the doorstep.\n\n# Real circularity is human\n\nWaste pickers, historically pushed to the margins of urban planning, are recognized as skilled environmental workers with biometric IDs, occupational health coverage, and dignified livelihoods. Organic waste is diverted to community bio-methanation units that generate electricity for streetlights.\n\nThe lesson from Bangalore's sustainable lanes is clear: lasting environmental stewardship cannot be outsourced to distant landfills. It begins at the kitchen bin and lives in community solidarity.",
-      color: "linear-gradient(155deg,#8a3720,#c99a2e)",
-      icon: "hands",
-      author: "Priya",
-      authorRole: "contributor",
-      date: "3 days ago",
-      createdAt: 1699800000000,
-      image: null,
-      images: [],
-      draft: false
-    }
-  ];
-
-  // Seed Desk members with rich portfolios (About me, reporting, bio, text and images)
-  const seedDesk = [
-    {
-      id: 'desk-yasha',
-      name: 'Yasha',
-      bio: 'student journalist & multimedia storyteller',
-      color: 'linear-gradient(155deg,#8a3720,#3a2c22)',
-      image: null,
-      images: [],
-      text: `# ABOUT ME
-
-I’m Nakirekanti Yashaswini, a student journalist and multimedia storyteller based in Bengaluru. My reporting interests span people, city life, culture, public services, arts and the everyday stories that often go unnoticed.
-
-I’m particularly drawn to stories about people and places from workers who keep a neighbourhood running to artists, creators, small businesses and communities whose experiences reveal something larger about the city around them. I enjoy reporting from the field, building trust with people and using language to make stories more accessible across different communities.
-
-Beyond writing, I have a strong interest in multimedia storytelling and visual media. I work with Adobe Creative Cloud and Canva for photo editing, graphic design, social media content and visual storytelling, and I enjoy bringing together written reporting with photography, video and design. My interests in anime, manga, novels and other forms of visual and narrative media have also shaped the way I think about character, world-building, visual language and storytelling.
-
-I’m also interested in travel and place-based storytelling. Exploring new cities, cultures, and grassroots initiatives that make neighbourhoods resilient and vibrant.`
-    },
-    {
-      id: 'desk-alvin',
-      name: 'Alvin',
-      bio: 'urban ecology & lake watershed coordinator',
-      color: 'linear-gradient(155deg,#b0492f,#1c1916)',
-      image: null,
-      images: [],
-      text: `# ABOUT ME
-
-I’m Alvin, an urban ecology researcher and community organizer focused on Bangalore’s water commons and decentralized lake restoration. My work sits at the intersection of citizen science, hydrology, and grassroots neighborhood stewardship.
-
-I coordinate field monitoring across the Hebbal and Koramangala-Challaghatta drainage corridors, working closely with local residents and civic agencies to reconnect fragmented lake cascades and revitalize open wells.
-
-# RECENT INITIATIVES
-
-My focus over the last three years has been on the Jakkur Wetland model — documenting how constructed reed beds absorb urban runoff nutrients and foster biodiverse habitat for migratory waterfowl. I also lead weekend water walks and citizen mapping workshops to demystify stormwater management for young Bangaloreans.`
-    },
-    {
-      id: 'desk-brittney',
-      name: 'Brittney',
-      bio: 'ecological builder & biomaterials designer',
-      color: 'linear-gradient(155deg,#c99a2e,#8a6a1f)',
-      image: null,
-      images: [],
-      text: `# ABOUT ME
-
-I’m Brittney, an ecological builder and biomaterials researcher based in Bangalore. I work with earth, bamboo, and reclaimed industrial by-products to develop low-carbon architectural solutions for tropical urban living.
-
-My research explores how compressed earth blocks and lime plasters can replace energy-intensive kiln bricks and cement in contemporary residences, cutting embodied emissions while naturally regulating indoor microclimates.`
-    }
-  ];
-
-  function loadArticles(){
-    try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(raw){
-        const parsed = JSON.parse(raw);
-        if(Array.isArray(parsed) && parsed.length) return parsed;
-      }
-    }catch(e){}
-    return seedArticles.slice();
-  }
-
-  function saveArticles(){
-    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(articles)); }catch(e){}
-  }
-
-  function loadDesk(){
-    try{
-      const raw = localStorage.getItem(DESK_STORAGE_KEY);
-      if(raw){
-        const parsed = JSON.parse(raw);
-        if(Array.isArray(parsed) && parsed.length) return parsed;
-      }
-    }catch(e){}
-    return JSON.parse(JSON.stringify(seedDesk));
-  }
-
-  function saveDesk(){
-    try{ localStorage.setItem(DESK_STORAGE_KEY, JSON.stringify(deskMembers)); }catch(e){}
-  }
-
   function loadUser(){
     try{
       const raw = sessionStorage.getItem('kindling_user_session');
@@ -924,11 +783,12 @@ My research explores how compressed earth blocks and lime plasters can replace e
     }catch(e){}
   }
 
-  let articles = loadArticles();
-  let deskMembers = loadDesk();
+  let articles = [];
+  let deskMembers = [];
+  let currentPortfolio = null;
+  let currentPortfolioMemberId = null;
   let currentUser = loadUser();
   let openIdx = null;
-  let currentPortfolioMemberId = null;
 
   // DOM Elements
   const grid = document.getElementById('grid');
@@ -1010,7 +870,7 @@ My research explores how compressed earth blocks and lime plasters can replace e
           <div class="desk-avatar" style="background:${mem.image ? 'transparent' : (mem.color || 'var(--clay)')}">${avatarInner}</div>
           <div>
             <div class="desk-name">${escapeHtml(mem.name)}</div>
-            <div class="desk-role">${escapeHtml(mem.bio || 'contributor')}</div>
+            <div class="desk-role">${escapeHtml(mem.description || mem.bio || 'contributor')}</div>
           </div>
         `;
 
@@ -1043,11 +903,13 @@ My research explores how compressed earth blocks and lime plasters can replace e
     }
   }
 
-  function openPortfolio(memberId){
+  async function openPortfolio(memberId){
     const mem = deskMembers.find(m => m.id === memberId);
     if(!mem) return;
 
     currentPortfolioMemberId = memberId;
+    currentPortfolio = null;
+
     if(mem.image){
       pfAvatar.innerHTML = `<img src="${mem.image}" alt="${escapeHtml(mem.name)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
       pfAvatar.style.background = 'transparent';
@@ -1057,10 +919,13 @@ My research explores how compressed earth blocks and lime plasters can replace e
     }
 
     pfName.textContent = mem.name;
-    pfBio.textContent = mem.bio || 'contributor';
+    pfBio.textContent = mem.description || mem.bio || 'contributor';
 
     if(editPortfolioBtn){
       editPortfolioBtn.style.display = isAdmin() ? 'inline-block' : 'none';
+    }
+    if(deletePortfolioBtn){
+      deletePortfolioBtn.style.display = 'none';
     }
 
     if(pfHero){
@@ -1068,8 +933,7 @@ My research explores how compressed earth blocks and lime plasters can replace e
       pfHero.style.display = 'none';
     }
 
-    // Render full about me & portfolio story
-    pfBody.innerHTML = renderBody(mem.text || '', mem.images || []);
+    pfBody.innerHTML = '<p class="empty" style="padding:24px 0;">Loading portfolio...</p>';
 
     heroSection.style.display = 'none';
     feedSection.style.display = 'none';
@@ -1077,10 +941,30 @@ My research explores how compressed earth blocks and lime plasters can replace e
     articleView.style.display = 'none';
     portfolioView.style.display = 'block';
     window.scrollTo({top:0, behavior:'smooth'});
+
+    try {
+      const data = await api('/api/portfolios?desk_id=' + encodeURIComponent(memberId));
+      const portfolios = Array.isArray(data.portfolios) ? data.portfolios : [];
+      currentPortfolio = portfolios[0] || null;
+
+      if(deletePortfolioBtn){
+        deletePortfolioBtn.style.display = (isAdmin() && currentPortfolio) ? 'inline-block' : 'none';
+      }
+
+      if(currentPortfolio && (currentPortfolio.content || currentPortfolio.title)){
+        pfBody.innerHTML = renderBody(currentPortfolio.content || '', currentPortfolio.images || []);
+      } else {
+        pfBody.innerHTML = '<p class="empty" style="padding:24px 0;">No portfolio details added yet.</p>';
+      }
+    } catch(e) {
+      console.error(e);
+      pfBody.innerHTML = '<p class="empty" style="padding:24px 0;">Failed to load portfolio.</p>';
+    }
   }
 
   function closePortfolio(){
     currentPortfolioMemberId = null;
+    currentPortfolio = null;
     portfolioView.style.display = 'none';
     heroSection.style.display = '';
     feedSection.style.display = '';
@@ -1092,16 +976,40 @@ My research explores how compressed earth blocks and lime plasters can replace e
     portfolioBackBtn.addEventListener('click', closePortfolio);
   }
 
-  function removeDeskMember(id){
+  const deletePortfolioBtn = document.getElementById('deletePortfolioBtn');
+  if(deletePortfolioBtn){
+    deletePortfolioBtn.addEventListener('click', async () => {
+      if(!isAdmin() || !currentPortfolio || !currentPortfolio.id) return;
+      if(!confirm('Are you sure you want to delete this portfolio?')) return;
+      try {
+        await api('/api/portfolios/' + encodeURIComponent(currentPortfolio.id), { method: 'DELETE' });
+        currentPortfolio = null;
+        showToast('Portfolio deleted.');
+        if(currentPortfolioMemberId){
+          openPortfolio(currentPortfolioMemberId);
+        }
+      } catch(e) {
+        console.error(e);
+        showToast('Failed to delete portfolio: ' + (e.message || 'error'));
+      }
+    });
+  }
+
+  async function removeDeskMember(id){
     if(!isAdmin()) return;
     const mem = deskMembers.find(m => m.id === id);
     if(!mem) return;
-    deskMembers = deskMembers.filter(m => m.id !== id);
-    saveDesk();
-    renderDesk();
-    showToast(`Removed ${mem.name} from the desk.`);
-    if(currentPortfolioMemberId === id){
-      closePortfolio();
+    if(!confirm(`Remove ${mem.name} from the desk?`)) return;
+    try {
+      await api('/api/desk/' + encodeURIComponent(id), { method: 'DELETE' });
+      await fetchDesk();
+      showToast(`Removed ${mem.name} from the desk.`);
+      if(currentPortfolioMemberId === id){
+        closePortfolio();
+      }
+    } catch(e) {
+      console.error(e);
+      showToast('Could not remove member: ' + (e.message || 'error'));
     }
   }
 
@@ -1137,7 +1045,7 @@ My research explores how compressed earth blocks and lime plasters can replace e
     ).join('<br>');
   }
 
-  function openDeskMemberModal(memberId = null){
+  async function openDeskMemberModal(memberId = null){
     if(!isAdmin()) return;
     editingDeskMemberId = memberId;
     deskMemberError.classList.remove('show');
@@ -1148,8 +1056,17 @@ My research explores how compressed earth blocks and lime plasters can replace e
       if(!mem) return;
       deskMemberModalTitle.textContent = 'Edit portfolio for ' + mem.name;
       deskMemberName.value = mem.name || '';
-      deskMemberBio.value = mem.bio || '';
-      deskMemberText.value = mem.text || '';
+      deskMemberBio.value = mem.description || mem.bio || '';
+
+      let pf = currentPortfolio;
+      if(!pf || pf.desk_id !== memberId){
+        try {
+          const res = await api('/api/portfolios?desk_id=' + encodeURIComponent(memberId));
+          pf = (res.portfolios && res.portfolios[0]) || null;
+        } catch(_) {}
+      }
+
+      deskMemberText.value = (pf && pf.content) || '';
 
       if(mem.image){
         pendingDeskCover = { name: 'Current Photo', dataUrl: mem.image };
@@ -1161,7 +1078,8 @@ My research explores how compressed earth blocks and lime plasters can replace e
         deskCoverPreview.style.display = 'none';
       }
 
-      pendingDeskBodyImages = (mem.images || []).map((img, i) => ({
+      const imgs = (pf && pf.images) || [];
+      pendingDeskBodyImages = imgs.map((img, i) => ({
         name: 'Body Image ' + (i+1),
         dataUrl: img
       }));
@@ -1268,7 +1186,7 @@ My research explores how compressed earth blocks and lime plasters can replace e
   }
 
   if(saveDeskMember){
-    saveDeskMember.addEventListener('click', () => {
+    saveDeskMember.addEventListener('click', async () => {
       if(!isAdmin()) return;
       const name = deskMemberName.value.trim();
       const bio = deskMemberBio.value.trim();
@@ -1282,41 +1200,74 @@ My research explores how compressed earth blocks and lime plasters can replace e
       const coverImage = pendingDeskCover ? pendingDeskCover.dataUrl : null;
       const bodyImages = pendingDeskBodyImages.map(img => img.dataUrl);
 
-      if(editingDeskMemberId){
-        // Update existing member
-        const mem = deskMembers.find(m => m.id === editingDeskMemberId);
-        if(mem){
-          mem.name = name;
-          mem.bio = bio || 'contributor';
-          mem.text = text;
-          mem.image = coverImage;
-          mem.images = bodyImages;
-          saveDesk();
-          renderDesk();
-          if(currentPortfolioMemberId === mem.id){
-            openPortfolio(mem.id);
+      saveDeskMember.disabled = true;
+      saveDeskMember.textContent = 'Saving...';
+
+      try {
+        if(editingDeskMemberId){
+          await api('/api/desk/' + encodeURIComponent(editingDeskMemberId), {
+            method: 'PUT',
+            body: JSON.stringify({
+              name,
+              description: bio || 'contributor',
+              image: coverImage
+            })
+          });
+
+          await api('/api/portfolios', {
+            method: 'POST',
+            body: JSON.stringify({
+              desk_id: editingDeskMemberId,
+              title: 'About ' + name,
+              description: bio || 'contributor',
+              content: text,
+              image: coverImage,
+              images: bodyImages
+            })
+          });
+
+          await fetchDesk();
+          if(currentPortfolioMemberId === editingDeskMemberId){
+            await openPortfolio(editingDeskMemberId);
           }
           showToast(`Portfolio for ${name} updated.`);
-        }
-      } else {
-        // Create new member
-        const randomColor = COLOR_PALETTES[Math.floor(Math.random() * COLOR_PALETTES.length)];
-        const newMember = {
-          id: 'desk-' + Date.now(),
-          name,
-          bio: bio || 'contributor',
-          color: randomColor,
-          image: coverImage,
-          images: bodyImages,
-          text
-        };
-        deskMembers.push(newMember);
-        saveDesk();
-        renderDesk();
-        showToast(`Added ${name} to the desk.`);
-      }
+        } else {
+          const resDesk = await api('/api/desk', {
+            method: 'POST',
+            body: JSON.stringify({
+              name,
+              description: bio || 'contributor',
+              image: coverImage
+            })
+          });
 
-      closeDeskMemberModal();
+          const newId = resDesk.member && resDesk.member.id;
+          if(newId){
+            await api('/api/portfolios', {
+              method: 'POST',
+              body: JSON.stringify({
+                desk_id: newId,
+                title: 'About ' + name,
+                description: bio || 'contributor',
+                content: text,
+                image: coverImage,
+                images: bodyImages
+              })
+            });
+          }
+
+          await fetchDesk();
+          showToast(`Added ${name} to the desk.`);
+        }
+
+        closeDeskMemberModal();
+      } catch(e) {
+        console.error(e);
+        showToast('Error saving: ' + (e.message || 'server error'));
+      } finally {
+        saveDeskMember.disabled = false;
+        saveDeskMember.textContent = 'save portfolio';
+      }
     });
   }
 
@@ -1546,20 +1497,35 @@ My research explores how compressed earth blocks and lime plasters can replace e
     return data;
   }
 
-  async function initStorage(){
+  async function fetchArticles(){
     try{
       const data = await api('/api/articles');
-      if(Array.isArray(data.articles) && data.articles.length > 0){
-        articles = data.articles;
-        saveArticles();
-        render();
-      }
+      articles = Array.isArray(data.articles) ? data.articles : [];
+      render();
     }catch(e){
-      console.warn('Backend sync unavailable; using local articles.', e);
+      console.warn('Backend sync unavailable for articles:', e);
+      articles = [];
+      render();
     }
   }
 
-  initStorage();
+  async function fetchDesk(){
+    try{
+      const data = await api('/api/desk');
+      deskMembers = Array.isArray(data.desk) ? data.desk : [];
+      renderDesk();
+    }catch(e){
+      console.warn('Backend sync unavailable for desk:', e);
+      deskMembers = [];
+      renderDesk();
+    }
+  }
+
+  async function initApp(){
+    await Promise.all([fetchArticles(), fetchDesk()]);
+  }
+
+  initApp();
 
   // ---------- Session & UI ----------
   const contributeBtn = document.getElementById('contributeBtn');
@@ -1828,18 +1794,13 @@ My research explores how compressed earth blocks and lime plasters can replace e
         body:JSON.stringify(article)
       });
       articles = result.articles || [article, ...articles];
-      saveArticles();
       render();
       closeComposeModal();
       showToast('Published.');
       document.getElementById('feed').scrollIntoView({behavior:'smooth', block:'start'});
     }catch(e){
       console.error(e);
-      articles.unshift(article);
-      saveArticles();
-      render();
-      closeComposeModal();
-      showToast('Saved to this browser.');
+      showToast('Failed to publish: ' + (e.message || 'error'));
     }
   });
 
@@ -1888,7 +1849,6 @@ My research explores how compressed earth blocks and lime plasters can replace e
       }else{
         articles.splice(idx, 1);
       }
-      saveArticles();
 
       closeDeleteModal();
       if(wasOpenOnDeleted) closeArticle();
@@ -1896,12 +1856,7 @@ My research explores how compressed earth blocks and lime plasters can replace e
       showToast('Deleted.');
     }catch(e){
       console.error(e);
-      articles.splice(idx, 1);
-      saveArticles();
-      closeDeleteModal();
-      if(wasOpenOnDeleted) closeArticle();
-      render();
-      showToast('Deleted from local feed.');
+      showToast('Failed to delete: ' + (e.message || 'error'));
     }
   });
 

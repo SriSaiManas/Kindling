@@ -4,8 +4,7 @@ const {
   getRequestUser,
   sendJson,
   readJson,
-  getArticles,
-  seedIfEmpty
+  getArticles
 } = require('./_supabase');
 
 module.exports = async function handler(req, res) {
@@ -13,7 +12,6 @@ module.exports = async function handler(req, res) {
     const supabase = getSupabaseAdmin();
 
     if (req.method === 'GET') {
-      await seedIfEmpty(supabase);
       return sendJson(res, 200, { articles: await getArticles(supabase) });
     }
 
